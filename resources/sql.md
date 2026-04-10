@@ -36,7 +36,7 @@
 * Popular Systems: Common databases that utilize SQL include MySQL, PostgreSQL, Oracle, Microsoft SQL Server, and Access.
 
 ## Cardinality
-* Definition: Cardinality refers to the maximum number of times an instance (a single row of data) in one entity can relate to instances in another entity.
+* Definition: Cardinality refers to the maximum number of times a single row of data in one table can relate to instances in another table.
 
 ## SQL Statements
 * SELECT: Identifies the columns (attributes) you want to retrieve.
