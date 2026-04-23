@@ -85,8 +85,12 @@ Filters the data based on specific conditions (e.g., Price > 100).
 ### GROUP BY 
 Arranges identical data into groups (often used with functions like SUM or COUNT).
 
+Any column that is not within an aggregation must show up in your GROUP BY statement.
+
 ### HAVING 
-Filters groups created by the GROUP BY clause (similar to WHERE, but for groups). Or used in place of WHERE on an element created by aggregation.
+Filters groups created by the GROUP BY clause (similar to WHERE, but for groups). 
+
+Used in place of WHERE on an element created by aggregation.
 
 ### ORDER BY 
 Sorts the resulting data in ascending or descending order.
@@ -100,13 +104,17 @@ Restricts the number of rows returned in the result.
 ## Aggregate Functions
 A function where the values of multiple rows are grouped together as input on certain criteria to form a single value of more significant meaning.
 
-* COUNT(): Does not consider NULL values and can be used on both numerical and non-numerical columns
+These functions ignore NULL values and aggregate vertically
+
+* COUNT(): Can be used on both numerical and non-numerical columns
 
 * SUM(): 
 
 * MIN() and MAX(): Can be used on non-numerical columns
 
-* AVG():
+* AVG(): returns mean of the data
+
+* MEDIAN: difficult thing to get using SQL alone
 
 * DATE_TRUNC(): Precision is down to the second
 
@@ -118,7 +126,7 @@ A subquery is a query nested inside another query that can return:
 
 * A single row or single column (vector subquery)
 
-* Or an entire result set / table (table subquery)
+* Or an entire table (table subquery)
 
 In many cases, either a subquery or a join can be used to achieve the exact same result.
 
@@ -128,7 +136,9 @@ Windows Function takes many rows and returns the same number of rows. Unlike agg
 
 The most practical application of Window functions is to create a running total.
 
-* PARTITION BY: Divides the rows into separate groups (partitions) so that the window function is applied independently to each group; unlike GROUP BY, which collapses rows and returns only one row per group, PARTITION BY keeps all original rows intact while still allowing calculations to be performed separately on each partition.
+* PARTITION BY: Divides the rows into separate groups (partitions) so that the window function is applied independently to each group.
+
+Unlike GROUP BY, which collapses rows and returns only one row per group, PARTITION BY keeps all original rows intact while still allowing calculations to be performed separately on each partition.
 
 * LAG(): Used to compare the values of the current and the previous rows
 
