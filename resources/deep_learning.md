@@ -76,8 +76,124 @@ Types
 
 
 ## Activation Functions
+They map a single value to another value and adds non-linearity to deep learning models.
+
+Types of activation functions:
+
+### Sigmoid: 
+* mimics the activation in biological brain
+
+* non-zero centered 
+
+* suffers from vanishing gradient from large from large input values
+
+### Hyperbolic tangent (tanh):
+* It's zero centered as opposed to sigmoid.
+
+* It also saturates and results in vanishing gradient problem.
+
+### Rectified linear units (ReLU):
+* cuts off values below zero
+
+* non-saturating
+
+* converges faster than sigmoid and tanh
+
+* If learning rate set too high, as much as 40% of the neurons can die
+
+### Leaky ReLU:
+* proposed to solve dying neurons problem
+
+* Usually the slope for the negative values is set to 0.1
+
+* similar to parametric ReLU (PReLU) where the slope of the negative part is a parameter to learn
+
+### Softmax:
+* It's mostly used in output layer.
+
+* Its outputs can be read as the probabilities.
 
 
 ## Loss Functions
+Its called the loss function, cost function, or error function when minimizing the objective function or criterion. 
+
+In deep learning, the objective function is usually the average of the loss functions.
+
+A measure of how wrong your model's predictions are compared to the actual truth.
+
+The loss is calculated by feeding the outputs of the model into the associated loss function
+
+### Classification
+Models usually output probabilities for each category as a result of the softmax layer (or activation)
+
+* Hinge loss: ensures the correct category's score exceeds the sum of incorrect scores by a safety margin, making it the ideal "maximum-margin" penalty for Support Vector Machines.
+
+* Cross-entropy loss: a measure how well your model's predicted probabilities align with the known labels in your training data. Similar to Maximum Likelihood Estimation (MLE) as it adjusts model weights.
+
+### Regression
+Single value as output
+
+* Mean Squared Error (MSE): average measured of the squared difference between predictions and actual observations
+
+* Mean Absolute Error (MAE): average measured of the sum of absolute differences between predictions and actual observations
 
 
+## Gradient Descent
+Iterative process used to find the specific set of weights and biases that make the network's output as close as possible to the actual target values.
+
+Not common for gradient descent to be used directly in deep learning.
+
+Why we prefer using quadratic cost function or MAE? Quadratic cost function provides a smooth gradient and reduces the risk of getting stuck in a local minimum.
+
+
+### Stochastic Gradient Descent (SGD)
+An optimized version of gradient descent designed to handle large datasets by drastically reducing the computational work required for each update.
+
+SGD samples one index at random, calculates the gradient for only that one specific example, and updates the parameters.
+
+### Mini-batch Stochastic Gradient Descent
+Middle ground approach that balances the stability of Batch Gradient Descent with the speed of Stochastic Gradient Descent.
+
+Instead of using the entire dataset (Batch) or just one single example (SGD), it uses a small, random subset of data points called a mini batch to calculate the gradient and update the model.
+
+
+## Keras And TensorFlow
+* User-friendliness
+
+* Modularity: can combine neural layers, cost functions, optimizers, initialization schemes, activation functions and regularization schemes to create new models
+
+* Easy extensibility: can create new modules
+
+### Modeling Steps
+1. Initialize the model container using Sequential()
+
+2. Get input shape equal to the number of features in dataset (X_train.shape[1])
+
+3. Specify the architecture (stacking layers) using the .add() method
+    * First Hidden Layer: specify input shape, number of neurons, and activation function
+
+    * Subsequent Hidden Layers: add more layers (no input shape)
+
+    * Output Layer: the final layer is tailored to your goal (e.g., one neuron for regression)
+
+4. Call model.summary()
+
+
+### Compile
+Bridges the model's architecture and the actual mathematical learning process.
+
+1. Choosing the Optimizer (optimizer='adam'): updates the weights and biases based on the error
+
+2. Choosing the Loss Function (loss='mean_squared_error'): tells the model how far its predictions are from the reality
+
+### Fit
+Where the actual training happens
+
+* Epochs (epochs=10): An epoch is one full pass through the entire training dataset
+
+* Batch Size (batch_size): Breaks up the data into smaller chunks
+
+* Verbosity (verbose): shows the progress bar and loss for every epoch if set to 1
+
+### Predict
+Use the predict() method for estimation
