@@ -65,7 +65,7 @@ An unsupervised learning technique that applies backpropagation to reconstruct i
 
 Functionally similar to Principal Component Analysis but offers more flexibility and can capture non-linear relationships.
 
-Types
+Types:
 * Vanilla: The simplest version; a neural network featuring just one hidden layer.
 
 * Multilayer: An extension of the vanilla model that incorporates multiple hidden layers for complex data.
@@ -85,7 +85,7 @@ Types of activation functions:
 
 * non-zero centered 
 
-* suffers from vanishing gradient from large from large input values
+* suffers from vanishing gradient from large input values
 
 ### Hyperbolic tangent (tanh):
 * It's zero centered as opposed to sigmoid.
